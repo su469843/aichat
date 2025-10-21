@@ -1,0 +1,26 @@
+name = "ai-chat-worker"
+main = "worker.js"
+compatibility_date = "2024-10-01"
+
+# Configure KV namespaces in your own account and replace ids below.
+# You can also set these with `wrangler kv namespace create` and then update.
+kv_namespaces = [
+  { binding = "USERS", id = "__REPLACE_WITH_USERS_KV_NAMESPACE_ID__", preview_id = "__REPLACE_WITH_USERS_KV_PREVIEW_ID__" },
+  { binding = "HISTORY", id = "__REPLACE_WITH_HISTORY_KV_NAMESPACE_ID__", preview_id = "__REPLACE_WITH_HISTORY_KV_PREVIEW_ID__" }
+]
+
+[vars]
+# JWT secret for signing tokens
+JWT_SECRET = "change-me-super-secret"
+# Token TTL (seconds): default 7 days if not set
+JWT_TTL_SECONDS = 604800
+# CORS origins: comma separated, or * for all
+CORS_ORIGINS = "*"
+# AI provider config (openai or deepseek)
+AI_PROVIDER = "deepseek"
+# AI model name for the provider
+AI_MODEL = "deepseek-chat"
+# API base URL for the provider (DeepSeek default shown)
+AI_BASE_URL = "https://api.deepseek.com"
+# API key for the provider (set via `wrangler secret put AI_API_KEY` for security)
+# AI_API_KEY is intentionally not set here; use wrangler secrets.
